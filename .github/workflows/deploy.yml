@@ -14,7 +14,7 @@ jobs:
       AWS_SECRET_ACCESS_KEY: "/RCnS4UBqiBPyIzMRU4f5USuXJAcrdw/DU9HhIXr"
     defaults:
       run:
-        working-directory: simple-terraform-project/main.tf
+        working-directory: simple-terraform-project
     steps:
       - name: Checkout
         uses: actions/checkout@v2
