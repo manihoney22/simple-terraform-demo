@@ -31,4 +31,4 @@ jobs:
     - name: Deploy Static Website
       if: github.ref == 'refs/heads/main' && github.event_name == 'push'
       run: |
-        aws s3 sync ./path/to/your/website s3://myterraformprojectwebsite24 --delete
+        aws s3 sync ./simple-terraform-project s3://myterraformprojectwebsite24 --delete
