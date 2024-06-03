@@ -1,4 +1,4 @@
-name: Terraform CI/CD
+name: "Terraform"
 
 on:
   push:
@@ -6,29 +6,30 @@ on:
       - main
 
 jobs:
-  build:
+  terraform:
+    name: "Terraform"
     runs-on: ubuntu-latest
-
+    env:
+      AWS_ACCESS_KEY_ID: "AKIASI6K7KRQG7LM4PZE"
+      AWS_SECRET_ACCESS_KEY: "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"
+    defaults:
+      run:
+        working-directory: simple-terraform-project
     steps:
-    - name: Checkout code
-      uses: actions/checkout@v2
+      - name: Checkout
+        uses: actions/checkout@v2
 
-    - name: Install Terraform
-      uses: hashicorp/setup-terraform@v1
-      with:
-        terraform_version: 1.8.4
+      - name: Terraform Validate
+        id: fmt
+        run: terraform fmt -check
 
-    - name: Initialize Terraform
-      run: terraform init
+      - name: Terraform Init
+        id: init
+        run: terraform init
 
-    - name: Terraform Plan
-      run: terraform plan -out=tfplan
+      - name: Terraform Plan
+        id: plan
+        run: terraform plan -no-color
 
-    - name: Terraform Apply
-      if: github.ref == 'refs/heads/main' && github.event_name == 'push'
-      run: terraform apply -auto-approve tfplan
-
-    - name: Deploy Static Website
-      if: github.ref == 'refs/heads/main' && github.event_name == 'push'
-      run: |
-        simple-terraform-project s3://myterraformprojectwebsite24 --delete
+      - name: Terraform Apply
+        run: terraform apply -auto-approve
