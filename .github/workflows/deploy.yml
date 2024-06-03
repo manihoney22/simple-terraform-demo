@@ -7,6 +7,8 @@ on:
 
 jobs:
   terraform:
+    name: "Terraform"
+    runs-on: ubuntu-latest
     env:
       AWS_ACCESS_KEY_ID: "AKIASI6K7KRQG7LM4PZE"
       AWS_SECRET_ACCESS_KEY: "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"
