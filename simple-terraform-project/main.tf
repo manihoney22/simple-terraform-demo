@@ -26,12 +26,12 @@ resource "aws_s3_bucket_acl" "example" {
     aws_s3_bucket_public_access_block.example,
   ]
 
-  bucket = aws_s3_bucket.mybucket.id
+  bucket = aws_s3_bucket.myfirstbucket.id
   acl    = "public-read"
 }
 
 resource "aws_s3_object" "index" {
-  bucket = aws_s3_bucket.mybucket.id
+  bucket = aws_s3_bucket.myfirstbucket.id
   key = "index.html"
   source = "index.html"
   acl = "public-read"
@@ -39,7 +39,7 @@ resource "aws_s3_object" "index" {
 }
 
 resource "aws_s3_bucket_website_configuration" "website" {
-  bucket = aws_s3_bucket.mybucket.id
+  bucket = aws_s3_bucket.myfirstbucket.id
   index_document {
     suffix = "index.html"
   }
