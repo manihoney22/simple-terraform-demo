@@ -38,14 +38,6 @@ resource "aws_s3_object" "index" {
   content_type = "text/html"
 }
 
-resource "aws_s3_object" "error" {
-  bucket = aws_s3_bucket.mybucket.id
-  key = "error.html"
-  source = "error.html"
-  acl = "public-read"
-  content_type = "text/html"
-}
-
 resource "aws_s3_bucket_website_configuration" "website" {
   bucket = aws_s3_bucket.mybucket.id
   index_document {
